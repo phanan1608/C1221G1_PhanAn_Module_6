@@ -1,13 +1,18 @@
 package com.c1221g1.pharmacy.entity.prescription;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Prescription {
     @Id
+    @Column(columnDefinition = "VARCHAR(20)")
+    @GeneratedValue(generator = "prod-generator")
+    @GenericGenerator(name = "prod-generator",
+            parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "DT"),
+            strategy = "com.c1221g1.pharmacy.common.IdentityCodeGenerator")
     private String prescriptionId;
     private String prescriptionName;
     private String prescriptionSymptom;

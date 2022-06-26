@@ -4,6 +4,7 @@ import com.c1221g1.pharmacy.entity.cart.CartDetail;
 import com.c1221g1.pharmacy.entity.import_invoice.ImportInvoiceMedicine;
 import com.c1221g1.pharmacy.entity.invoice.InvoiceMedicine;
 import com.c1221g1.pharmacy.entity.prescription.MedicinePrescription;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +12,11 @@ import java.util.List;
 @Entity
 public class Medicine {
     @Id
+    @Column(columnDefinition = "VARCHAR(20)")
+    @GeneratedValue(generator = "prod-generator")
+    @GenericGenerator(name = "prod-generator",
+            parameters = @org.hibernate.annotations.Parameter(name = "prefix", value = "TH"),
+            strategy = "com.c1221g1.pharmacy.common.IdentityCodeGenerator")
     private String medicineId;
     private String medicineName;
     private String medicineActiveIngredients;

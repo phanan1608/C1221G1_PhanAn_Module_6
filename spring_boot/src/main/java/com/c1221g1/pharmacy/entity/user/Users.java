@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 public class Users {
-    @Id
+    @Id @Column(columnDefinition = "VARCHAR(30)")
     private String username;
     private String password;
     @Column(columnDefinition = "BIT")
